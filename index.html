@@ -36,9 +36,9 @@
 </head>
 <body>
     <div id="container">
-        <h1>Days Until 2025-05-05</h1>
+        <h1>距离“物化地”高考还有</h1>
         <div id="daysUntilMay5"></div>
-        <h1>Days Until 2025-06-07</h1>
+        <h1>距离“语数英”高考还有</h1>
         <div id="daysUntilJune7"></div>
     </div>
 
@@ -58,8 +58,8 @@
             const daysUntilMay5 = calculateDaysUntil(may5Date);
             const daysUntilJune7 = calculateDaysUntil(june7Date);
 
-            document.getElementById('daysUntilMay5').innerText = `${daysUntilMay5} days`;
-            document.getElementById('daysUntilJune7').innerText = `${daysUntilJune7} days`;
+            document.getElementById('daysUntilMay5').innerText = `${daysUntilMay5} 天`;
+            document.getElementById('daysUntilJune7').innerText = `${daysUntilJune7} 天`;
         }
 
         // 更新显示并每秒更新一次
