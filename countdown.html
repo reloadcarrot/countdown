@@ -1,0 +1,73 @@
+<!-- Started by AICoder, pid:r4d6cy6483o7fec1470a0bc0903bf978c351d70d -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Days Until Specific Dates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin: 0;
+            font-size: 5em;
+            color: #333;
+        }
+        #daysUntilMay5, #daysUntilJune7 {
+            font-size: 10em;
+            color: red;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Days Until 2025-05-05</h1>
+        <div id="daysUntilMay5"></div>
+        <h1>Days Until 2025-06-07</h1>
+        <div id="daysUntilJune7"></div>
+    </div>
+
+    <script>
+        function calculateDaysUntil(targetDate) {
+            const now = new Date();
+            const target = new Date(targetDate);
+            const diff = target - now;
+            const daysUntil = Math.ceil(diff / (1000 * 60 * 60 * 24));
+            return daysUntil;
+        }
+
+        function updateDisplay() {
+            const may5Date = '2025-05-05';
+            const june7Date = '2025-06-07';
+
+            const daysUntilMay5 = calculateDaysUntil(may5Date);
+            const daysUntilJune7 = calculateDaysUntil(june7Date);
+
+            document.getElementById('daysUntilMay5').innerText = `${daysUntilMay5} days`;
+            document.getElementById('daysUntilJune7').innerText = `${daysUntilJune7} days`;
+        }
+
+        // 更新显示并每秒更新一次
+        setInterval(updateDisplay, 1000);
+
+        // 立即执行一次以确保初始显示正确
+        updateDisplay();
+    </script>
+</body>
+</html>
+<!-- Ended by AICoder, pid:r4d6cy6483o7fec1470a0bc0903bf978c351d70d -->
