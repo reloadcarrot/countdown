@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Days countdown</title>
+    <title>Days Countdown</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,34 +13,34 @@
             height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
-            flex-direction: column; /* 确保内容垂直排列 */
+            flex-direction: column;
+        }
+        #clock-container {
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: black;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        #date, #clock {
+            color: #00cc00;
+            font-family: 'Courier New', monospace;
+            font-size: 2.5em;
+            text-shadow: 0 0 5px #00cc00, 0 0 10px #008800;
+            margin: 5px 0;
         }
         #container {
             text-align: center;
             background-color: black;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px; /* 使容器与顶部时间有一定的间距 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
         h1 {
             margin: 0;
             font-size: 2.5em;
             color: #fff;
-        }
-        #currentTimeContainer {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        #currentTimeTitle {
-            font-size: 2em;
-            color: black;
-            margin: 0;
-        }
-        #currentDate, #currentTime {
-            font-size: 2.5em;
-            color: black;
-            margin: 5px 0;
         }
         #daysUntilMay5, #daysUntilJune7 {
             font-size: 5em;
@@ -50,10 +50,9 @@
     </style>
 </head>
 <body>
-    <div id="currentTimeContainer">
-        <h2 id="currentTimeTitle">当前时间</h2>
-        <div id="currentDate"></div>
-        <div id="currentTime"></div>
+    <div id="clock-container">
+        <div id="date">-- -- --</div>
+        <div id="clock">--:--:--</div>
     </div>
     <div id="container">
         <h1>距离小三门高考还有</h1>
@@ -67,21 +66,16 @@
             const now = new Date();
             const target = new Date(targetDate);
             const diff = target - now;
-            const daysUntil = Math.ceil(diff / (1000 * 60 * 60 * 24));
-            return daysUntil;
+            return Math.ceil(diff / (1000 * 60 * 60 * 24));
         }
 
         function updateDisplay() {
             const may5Date = '2025-05-05';
             const june7Date = '2025-06-07';
 
-            const daysUntilMay5 = calculateDaysUntil(may5Date);
-            const daysUntilJune7 = calculateDaysUntil(june7Date);
+            document.getElementById('daysUntilMay5').innerText = `${calculateDaysUntil(may5Date)} 天`;
+            document.getElementById('daysUntilJune7').innerText = `${calculateDaysUntil(june7Date)} 天`;
 
-            document.getElementById('daysUntilMay5').innerText = `${daysUntilMay5} 天`;
-            document.getElementById('daysUntilJune7').innerText = `${daysUntilJune7} 天`;
-
-            // 更新当前时间，包括年月日时分秒
             const now = new Date();
             const year = now.getFullYear();
             const month = String(now.getMonth() + 1).padStart(2, '0');
@@ -90,17 +84,11 @@
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
 
-            const currentDateStr = `${year}-${month}-${day}`;
-            const currentTimeStr = `${hours}:${minutes}:${seconds}`;
-
-            document.getElementById('currentDate').innerText = currentDateStr;
-            document.getElementById('currentTime').innerText = currentTimeStr;
+            document.getElementById('date').innerText = `${year}-${month}-${day}`;
+            document.getElementById('clock').innerText = `${hours}:${minutes}:${seconds}`;
         }
 
-        // 更新显示并每秒更新一次
         setInterval(updateDisplay, 1000);
-
-        // 立即执行一次以确保初始显示正确
         updateDisplay();
     </script>
 </body>
